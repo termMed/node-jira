@@ -1,17 +1,21 @@
 /* 
  server.js
  mongodb-rest
- 
+
  Created by Tom de Grunt on 2010-10-03.
  Copyright (c) 2010 Tom de Grunt.
  This file is part of mongodb-rest.
  */
 
 var fs = require("fs"),
-        sys = require("sys"),
-        express = require('express');
+    sys = require("sys"),
+    express = require('express');
 
 var config = {
+    "accessControl": {
+        "allowOrigin": "*",
+        "allowMethods": "GET,POST,PUT,DELETE,HEAD,OPTIONS"
+    },
     'server': {
         'port': 3000,
         'address': "0.0.0.0"
@@ -30,12 +34,15 @@ try {
 
 module.exports.config = config;
 
-app.configure(function() {
+app.configure(function () {
     app.use(express.json());
     app.use(express.urlencoded());
     app.use(express.static(process.cwd() + '/public'));
     app.use(express.logger());
-
+    if (config.accessControl) {
+        var accesscontrol = require('./lib/accesscontrol');
+        app.use(accesscontrol.handle);
+    }
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
 

@@ -1,15 +1,15 @@
 {
-  "name": "jira",
+  "name": "termmed-jira",
   "version": "0.8.2",
   "description": "Wrapper for the JIRA API",
-  "author": "Steven Surowiec <steven.surowiec@gmail.com>",
+  "author": "",
   "contributors": [
-    "Chris Moultrie <chris@moultrie.org>"
+    ""
   ],
-  "homepage": "http://github.com/steves/node-jira",
+  "homepage": "https://github.com/termMed/node-jira",
   "repository": {
     "type": "git",
-    "url": "http://github.com/steves/node-jira.git"
+    "url": "https://github.com/termMed/node-jira.git"
   },
   "engine": {
     "node": ">=0.4.0"
